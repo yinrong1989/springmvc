@@ -1,0 +1,7 @@
+com\yinrong\model\User.class
+com\yinrong\controller\index.class
+com\yinrong\model\Message.class
+com\yinrong\mvcdemo\HellomvcController.class
+com\yinrong\controller\UserController.class
+com\yinrong\controller\FileHandle.class
+com\yinrong\service\UserService.class
