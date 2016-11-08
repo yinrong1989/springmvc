@@ -2,6 +2,7 @@ package com.yinrong.mvcdemo;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
@@ -18,8 +19,15 @@ public class HellomvcController {
        System.out.println("home");
        return "home";
    }
-    @RequestMapping("/hello2")
+    @RequestMapping(value = "/hello2",method = RequestMethod.POST)
     public @ResponseBody Map hello2() {
+        Map map=new HashMap();
+        map.put("name","yinrong");
+        return map;
+    }
+    @RequestMapping(value = "/hello3",method = RequestMethod.POST)
+    @ResponseBody
+    public  Map hello3() {
         Map map=new HashMap();
         map.put("name","yinrong");
         return map;
