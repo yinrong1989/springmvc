@@ -106,6 +106,12 @@
         <artifactId>spring-tx</artifactId>
         <version>${spring.version}</version>
     </dependency>
+      <!-- druid -->
+      <dependency>
+          <groupId>com.alibaba</groupId>
+          <artifactId>druid</artifactId>
+          <version>1.0.7</version>
+      </dependency>
     <!--mybaits相关配置结束-->
 
   </dependencies>

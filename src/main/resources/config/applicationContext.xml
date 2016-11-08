@@ -29,4 +29,6 @@
     <!-- 系统服务配置 -->
     <import resource="classpath:META-INF/spring/mvc-integration.xml"/>
     <!--<import resource="classpath:META-INF/spring/persistence.xml" />-->
+    <import resource="classpath:META-INF/spring/dal-dao-mvc.xml" />
+    <import resource="classpath*:META-INF/spring/**/*-bean.xml"/>
 </beans>
