@@ -18,8 +18,8 @@
         <property name="locations">
             <list>
             <!--<value>file:D:\yinrong\svn\env_conf\func110\basis\mgs\app.properties</value>-->
-            <value>classpath:config\app.properties</value>
-            <value>conf\sqlmap\jdbc.properties</value>
+            <!--<value>classpath:config\app.properties</value>-->
+            <value>\config\sqlmap\jdbc.properties</value>
             </list>
         </property>
         <property name="fileEncoding">
@@ -28,7 +28,7 @@
     </bean>
     <!-- 系统服务配置 -->
     <import resource="classpath:META-INF/spring/mvc-integration.xml"/>
-    <!--<import resource="classpath:META-INF/spring/persistence.xml" />-->
+    <import resource="classpath:META-INF/spring/persistence.xml" />
     <import resource="classpath:META-INF/spring/dal-dao-mvc.xml" />
-    <import resource="classpath*:META-INF/spring/**/*-bean.xml"/>
+<!--    <import resource="classpath*:META-INF/spring/**/*-bean.xml"/>-->
 </beans>

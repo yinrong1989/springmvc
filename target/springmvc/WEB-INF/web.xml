@@ -5,6 +5,9 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
          http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
   <display-name>Archetype Created Web Application</display-name>
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
     <!--  DispatcherServlet,SpringMVC核心 -->
   <servlet>
     <servlet-name>mvc-dispatcher</servlet-name>
@@ -16,6 +19,14 @@
     </init-param>
       <load-on-startup>1</load-on-startup>
   </servlet>
+    <servlet>
+    <servlet-name>DruidStatView</servlet-name>
+    <servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DruidStatView</servlet-name>
+        <url-pattern>/druid/*</url-pattern>
+    </servlet-mapping>
     <!---拦截所有请求-->
   <servlet-mapping>
       <servlet-name>mvc-dispatcher</servlet-name>
@@ -34,7 +45,5 @@
       <!--  <param-value>/WEB-INF/configs/applicationContext.xml</param-value>-->
        <param-value>classpath:config/applicationContext.xml</param-value>
     </context-param>
- <welcome-file-list>
-     <welcome-file>index.jsp</welcome-file>
- </welcome-file-list>
+
 </web-app>

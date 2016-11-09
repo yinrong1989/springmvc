@@ -14,12 +14,12 @@
 	</Array>
 
 	 <New id="b2r" class="org.mortbay.jetty.plus.naming.Resource">
-		<Arg>cashierDataSource</Arg>
+		<Arg>memberDataSource</Arg>
 		<Arg>
 			<New class="com.mysql.jdbc.jdbc2.optional.MysqlConnectionPoolDataSource">
-				<Set name="url"><![CDATA[jdbc:mysql://10.65.216.64:3344/cashier?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull ]]></Set>
-				<Set name="user">cashieruser</Set>
-				<Set name="password">cashieruser</Set>
+				<Set name="url"><![CDATA[jdbc:mysql://127.0.0.1:3306/member?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull ]]></Set>
+				<Set name="user">root</Set>
+				<Set name="password">root</Set>
 			</New>
 		</Arg>
 	</New>

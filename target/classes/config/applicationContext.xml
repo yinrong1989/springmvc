@@ -1,6 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans.xsd
+         http://www.springframework.org/schema/context
+         http://www.springframework.org/schema/context/spring-context.xsd"
+       default-autowire="byName">
+    <context:annotation-config/>
     <bean id="userService" class="com.yinrong.service.UserService"></bean>
+
+    <!-- 配置参数 -->
+    <!--PropertyPlaceholderConfigurer是个bean工厂后置处理器的实现，也就是 BeanFactoryPostProcessor接口的一个实现。
+     PropertyPlaceholderConfigurer可以将上下文（配置文 件）中的属性值放在另一个单独的标准java Properties文件中去。
+     在XML文件中用${key}替换指定的properties文件中的值-->
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+            <!--<value>file:D:\yinrong\svn\env_conf\func110\basis\mgs\app.properties</value>-->
+            <!--<value>classpath:config\app.properties</value>-->
+            <value>\config\sqlmap\jdbc.properties</value>
+            </list>
+        </property>
+        <property name="fileEncoding">
+            <value>UTF-8</value>
+        </property>
+    </bean>
+    <!-- 系统服务配置 -->
+    <import resource="classpath:META-INF/spring/mvc-integration.xml"/>
+    <import resource="classpath:META-INF/spring/persistence.xml" />
+    <import resource="classpath:META-INF/spring/dal-dao-mvc.xml" />
+<!--    <import resource="classpath*:META-INF/spring/**/*-bean.xml"/>-->
 </beans>

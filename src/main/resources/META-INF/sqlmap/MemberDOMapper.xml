@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yinrong.dao.MemberDao" >
+  <resultMap id="BaseResultMap" type="com.yinrong.dataobject.MemberDo">
+    <result property="memberId" column="MEMBER_ID" javaType="java.lang.String" jdbcType="VARCHAR"/>
+    <result property="memberName" column="MEMBER_NAME" javaType="java.lang.String" jdbcType="VARCHAR"/>
+    <result property="memberShortName" column="MEMBER_SHORT_NAME" javaType="java.lang.String" jdbcType="VARCHAR"/>
+    <result property="memberType" column="MEMBER_TYPE" javaType="long" jdbcType="DECIMAL" />
+    <result property="status" column="STATUS" javaType="long" jdbcType="DECIMAL" />
+    <result property="lockStatus" column="LOCK_STATUS" javaType="long" jdbcType="DECIMAL" />
+    <result property="fromIp" column="FROM_IP" javaType="java.lang.String" jdbcType="VARCHAR"/>
+    <result property="activeTime" column="ACTIVE_TIME" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+    <result property="createTime" column="CREATE_TIME" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+    <result property="updateTime" column="UPDATE_TIME" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+    <result property="createUser" column="CREATE_USER" javaType="java.lang.String" jdbcType="VARCHAR"/>
+    <result property="updateUser" column="UPDATE_USER" javaType="java.lang.String" jdbcType="VARCHAR"/>
+    <result property="memo" column="MEMO" javaType="java.lang.String" jdbcType="VARCHAR"/>
+    <result property="securityLevel" column="SECURITY_LEVEL" javaType="java.lang.String" jdbcType="VARCHAR"/>
+  </resultMap>
+  <sql id="Base_Column_List" >
+  MEMBER_ID, MEMBER_NAME, MEMBER_SHORT_NAME, MEMBER_TYPE, STATUS, LOCK_STATUS, FROM_IP, ACTIVE_TIME, CREATE_TIME, UPDATE_TIME, CREATE_USER, UPDATE_USER, MEMO, SECURITY_LEVEL
+  </sql>
+  <select id="selectLastCreate" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from tm_member
+    order by create_time desc
+    limit 1
+  </select>
+</mapper>

@@ -8,7 +8,7 @@
     <!-- ======================================================================== -->
     <!--  DAO                                                            -->
     <bean id="auditDAO" class="org.mybatis.spring.mapper.MapperFactoryBean " parent="parentMapper">
-        <property name="mapperInterface" value="com.yinrong.dao.userDAO"/>
+        <property name="mapperInterface" value="com.yinrong.dao.UserDAO"/>
     </bean>
 
 </beans>
