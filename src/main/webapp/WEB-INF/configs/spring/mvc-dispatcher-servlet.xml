@@ -26,10 +26,10 @@
     -->
     <!-- 扫描符合@Service @Repository的类 -->
     <context:component-scan base-package="com.yinrong.*">
-        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+     <!--   <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
-        <context:include-filter type="annotation" expression="org.springframework.stereotype.Component"/>
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Component"/>-->
     </context:component-scan>
     <!--HandlerMaping,无需配置，SpringMVC 可以默认启动
     DefaultAnnotationHandlerMapping annotation-driven HandlerMapping

@@ -8,27 +8,39 @@
          http://www.springframework.org/schema/context/spring-context.xsd"
        default-autowire="byName">
     <context:annotation-config/>
+    <!-- 扫描符合@Service @Repository的类 -->
+    <context:component-scan base-package="com.yinrong.*">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Component"/>
+    </context:component-scan>
     <bean id="userService" class="com.yinrong.service.UserService"></bean>
 
     <!-- 配置参数 -->
     <!--PropertyPlaceholderConfigurer是个bean工厂后置处理器的实现，也就是 BeanFactoryPostProcessor接口的一个实现。
      PropertyPlaceholderConfigurer可以将上下文（配置文 件）中的属性值放在另一个单独的标准java Properties文件中去。
      在XML文件中用${key}替换指定的properties文件中的值-->
+    <!--Spring容器仅允许最多定义一个PropertyPlaceholderConfigurer(或<context:property-placeholder/>)，其余的会被Spring忽略掉-->
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">
             <list>
             <!--<value>file:D:\yinrong\svn\env_conf\func110\basis\mgs\app.properties</value>-->
             <!--<value>classpath:config\app.properties</value>-->
-            <value>\config\sqlmap\jdbc.properties</value>
+          <!--  <value>\config\sqlmap\jdbc.properties</value>-->
+            <value>classpath*:config/*.properties</value>
             </list>
         </property>
         <property name="fileEncoding">
             <value>UTF-8</value>
         </property>
     </bean>
+   <!-- <context:property-placeholder location="classpath*:conf/conf*.properties"/>-->
+
     <!-- 系统服务配置 -->
     <import resource="classpath:META-INF/spring/mvc-integration.xml"/>
     <import resource="classpath:META-INF/spring/persistence.xml" />
     <import resource="classpath:META-INF/spring/dal-dao-mvc.xml" />
+    <import resource="classpath:META-INF/spring/JedisPoolConfig.xml" />
 <!--    <import resource="classpath*:META-INF/spring/**/*-bean.xml"/>-->
 </beans>
