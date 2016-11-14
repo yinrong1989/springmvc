@@ -117,7 +117,7 @@ public class RedisClientTemplate {
      * 在某段时间后实现
      *
      * @param key
-     * @param seconds
+     * @param unixTime
      * @return
      */
     public Long expire(String key, int seconds) {

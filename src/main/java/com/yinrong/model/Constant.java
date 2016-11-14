@@ -6,4 +6,7 @@ package com.yinrong.model;
 public class Constant {
     public static String Cache ="cache";
     public static String REDIS_CLIENT_TEMPLATE ="redisClientTemplate";
+    public static String RedisCacheByHash ="redisCacheByHash";
+    public static String RedisCacheByKey ="redisCacheByKey";
+
 }

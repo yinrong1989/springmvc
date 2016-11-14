@@ -1,7 +1,8 @@
-package com.yinrong.util;
+package com.yinrong.util.cache.impl;
 import com.yinrong.model.Constant;
 import com.yinrong.redis.RedisClientTemplate;
 import  com.yinrong.util.SpringContextHolder;
+import com.yinrong.util.cache.RedisCache;
 import org.springframework.context.ApplicationContext;
 
 import java.util.Map;
@@ -10,36 +11,37 @@ import java.util.Set;
 /**
  * Created by yinrong on 2016/11/14.
  */
-public enum  CacheFactory {
-   SIGLEGTON;
+public enum  RedisCacheByHash implements RedisCache {
+    SINGLETON;
    private Map<String,String> cacheMap;
 
   private   RedisClientTemplate redisClient;
 
-    CacheFactory() {
+        RedisCacheByHash() {
         ApplicationContext applicationContext=SpringContextHolder.getApplicationContext();
          redisClient = (RedisClientTemplate)applicationContext.getBean(Constant.Cache);
+         init();
     }
-    private  void init(){
-
+    public   void init(){
+        refreshAll2Map();
     }
-    private Set<String> getAllCacheKeys(){
+    public Set<String> getAllCacheKeys(){
       return  redisClient.hkeys(Constant.Cache);
     }
 
-    private  void refresh2Map(String key){
+    public  void refresh2Map(String key){
         String value=  redisClient.hget(Constant.Cache,key);
         cacheMap.put(key,value);
     }
-    private  void refresh2Redis(String key,String value){
+    public  void refresh2Redis(String key,String value){
         cacheMap.put(key,value);
     }
-    private void refreshAll2Redis(){
+    public void refreshAll2Redis(){
         for (String key:cacheMap.keySet()){
             redisClient.hset("cache",key,cacheMap.get(key));
         }
     }
-    private  void refreshAll2Map(){
+    public  void refreshAll2Map(){
         Set<String> keys=redisClient.hkeys(Constant.Cache);
         for (String key : keys) {
           String value=  redisClient.hget(Constant.Cache,key);
