@@ -34,6 +34,13 @@
     -->
     <!--扩充注解驱动，可以将请求参数绑定到控制器参数-->
     <mvc:annotation-driven/>
+    <!--springmvc拦截器-->
+    <mvc:interceptors >
+        <mvc:interceptor>
+            <mvc:mapping path="/*.htm" />
+            <bean class="com.yinrong.interceptor.TestInterceptor" />
+        </mvc:interceptor>
+    </mvc:interceptors>
     <!---处理静态资源,css,js,imgs-->
     <!--资源映射resource-->
     <mvc:resources mapping="/resources/**" location="/resources/"/>
@@ -113,4 +120,12 @@
             </props>
         </property>
     </bean>
+    <bean id="tilesConfigurer"
+       class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
+         <property name="definitions">
+             <list>
+                 <value>/WEB-INF/configs/titles/titles.xml</value>
+             </list>
+         </property>
+     </bean>
 </beans>

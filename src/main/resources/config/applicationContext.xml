@@ -10,7 +10,6 @@
     <context:annotation-config/>
     <!-- 扫描符合@Service @Repository的类 -->
     <context:component-scan base-package="com.yinrong.*">
-        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Component"/>
@@ -36,6 +35,10 @@
         </property>
     </bean>
    <!-- <context:property-placeholder location="classpath*:conf/conf*.properties"/>-->
+    <!-- 全局资源 -->
+    <bean id="globalResource" class="com.yinrong.common.util.GlobalResource" factory-method="getInstance">
+    <!--    <property name="xmlResourceFile" value="${globalXmlResourceFile}" />-->
+    </bean>
 
     <!-- 系统服务配置 -->
     <import resource="classpath:META-INF/spring/mvc-integration.xml"/>
