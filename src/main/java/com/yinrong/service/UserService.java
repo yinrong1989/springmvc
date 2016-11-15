@@ -14,9 +14,9 @@ public class UserService {
     public  static Map<String,User> userMap=new HashMap<String,User>();
     private  static List<User>userlist=new ArrayList<User>();
     public UserService() {
-        Init();
+        init();
     }
-   public void Init(){
+   public void init(){
        userlist.add(new User("yinrong",28,"男"));
        userlist.add(new User("jiaxiaohong",26,"女"));
        userlist.add(new User("luowengjing",23,"女"));

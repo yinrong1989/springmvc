@@ -27,9 +27,7 @@
     <!-- 扫描符合@Service @Repository的类 -->
     <context:component-scan base-package="com.yinrong.*">
      <!--   <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
-        <context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
-        <context:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
-        <context:include-filter type="annotation" expression="org.springframework.stereotype.Component"/>-->
+      -->
     </context:component-scan>
     <!--HandlerMaping,无需配置，SpringMVC 可以默认启动
     DefaultAnnotationHandlerMapping annotation-driven HandlerMapping
@@ -50,6 +48,25 @@
                 <entry key="html" value="text/html"></entry>
             </map>
         </property>
+        <property name="viewResolvers">
+            <list>
+                <bean class="org.springframework.web.servlet.view.BeanNameViewResolver" />
+                <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+                    <property name= "viewClass" value= "org.springframework.web.servlet.view.JstlView"/>
+                    <property name= "contentType" value= "text/html"/>
+                    <property name="prefix" value="/WEB-INF/jsp/"/>
+                    <property name="suffix" value=".jsp"/>
+                </bean>
+                <!-- 配置Velocity视图解析器 -->
+                <bean  class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
+                    <property name="cache" value="false"/>
+                    <property name="order" value="1"/>
+                    <property name="suffix" value=".vm"/>
+                    <property name="contentType" value="text/html;charset=UTF-8"/>
+                    <property name="toolboxConfigLocation" value="WEB-INF/configs/velocity/toolbox.xml"/>
+                </bean>
+            </list>
+        </property>
         <property name="defaultViews">
             <list>
                 <bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"></bean>
@@ -57,16 +74,43 @@
         </property>
         <property name="ignoreAcceptHeader" value="true"></property>
     </bean>
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+<!--    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name= "viewClass" value= "org.springframework.web.servlet.view.JstlView"/>
         <property name= "contentType" value= "text/html"/>
         <property name="prefix" value="/WEB-INF/jsp/"/>
         <property name="suffix" value=".jsp"/>
-    </bean>
+    </bean>-->
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <property name="maxUploadSize" value="20971500"></property>
         <property name="defaultEncoding" value="UTF-8"></property>
         <property name="resolveLazily" value="true"></property>
+    </bean>
+    <!-- 配置Velocity视图解析器 -->
+  <!--  <bean id="velocityViewResolver" class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
+        <property name="cache" value="false"/>
+        <property name="order" value="1"/>
+        <property name="suffix" value=".vm"/>
+        <property name="contentType" value="text/html;charset=UTF-8"/>
+        <property name="toolboxConfigLocation" value="WEB-INF/configs/velocity/toolbox.xml"/>
+    </bean>-->
 
+    <!-- 配置Velocity引擎 -->
+    <bean id="velocityConfigurer" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+        <property name="resourceLoaderPath" value="/WEB-INF/vm/"/>
+        <!-- configLocation,velocityProperties配置内容会被合并，相同配置velocityProperties优先级别更高-->
+        <property name="configLocation" value="classpath:config/velocity.properties"/>
+        <property name="velocityProperties">
+            <props>
+                <prop key="input.encoding">UTF-8</prop>
+                <prop key="output.encoding">UTF-8</prop>
+                <prop key="directive.set.null.allowed">true</prop>
+                <prop key="velocimacro.library.autoreload">false</prop>  <!--可不配置, 默认即为false-->
+                <prop key="velocimacro.context.localscope">true</prop>
+                <prop key="file.resource.loader.cache">true</prop>         <!--打开cache开关-->
+                <prop key="file.resource.loader.modificationCheckInterval">60</prop>   <!-- load的间隔时间：其实若无动态修改的需求, 此处可改为-1，即只在启动时load一次, 此后不再load-->
+                <prop key="resource.manager.defaultcache.size">0</prop>      <!--resource.manager.defaultcache.size=0表示不限制cache大小-->
+                <prop key="velocimacro.library">macro/macros.vm</prop><!--多个可用逗号隔开-->
+            </props>
+        </property>
     </bean>
 </beans>

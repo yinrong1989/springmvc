@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 
 import javax.servlet.http.HttpServletRequest;
@@ -44,8 +45,7 @@ public class UserController {
         log.info("model name is" +modelname);
         String requestname = (String) request.getParameter("name");
         log.info("requestmodel name is" +requestname);
-
-        model.addAttribute(user);
+        model.addAttribute(user);//user不能为空，否则出错，最好返回一个ModelAndView，来绑定参数和视图
         return "userDetail";
     }
     @RequestMapping(value = "/view/{name}" ,method = RequestMethod.GET)
