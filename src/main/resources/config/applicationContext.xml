@@ -13,6 +13,9 @@
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Component"/>
+        <!--分别在对应的独立的spring配置文件中扫描包，好处是注释对应的配置文件，集合的框架独立开来-->
+        <context:exclude-filter type="regex" expression="com.yinrong.redis.*"/>
+        <context:exclude-filter type="regex" expression="com.yinrong.mongo.*"/>
     </context:component-scan>
     <bean id="userService" class="com.yinrong.service.UserService"></bean>
 
@@ -46,4 +49,6 @@
     <import resource="classpath:META-INF/spring/dal-dao-mvc.xml" />
     <import resource="classpath:META-INF/spring/JedisPoolConfig.xml" />
 <!--    <import resource="classpath*:META-INF/spring/**/*-bean.xml"/>-->
+    <!-- 引入mongodb的相关配置 -->
+    <import resource="classpath:META-INF/spring/spring-mongodb.xml"/>
 </beans>
