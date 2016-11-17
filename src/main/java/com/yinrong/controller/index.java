@@ -20,8 +20,7 @@ import java.util.List;
 public class index {
     @Resource
     MemberService memberService;
-    @Resource
-    RedisClientTemplate redisClientTemplate;
+
     @Resource
     private UserService userService;
     @RequestMapping("/index")
@@ -30,8 +29,6 @@ public class index {
         System.out.println(memberDo.getMemberName());
         System.out.println(memberDo.getCreateTime());
 
-        redisClientTemplate.set("a", "abc");
-        System.out.println(redisClientTemplate.get("a"));
         return "index";
     }
     @RequestMapping("/index2")

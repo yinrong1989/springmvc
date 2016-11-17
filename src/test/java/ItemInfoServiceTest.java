@@ -24,14 +24,7 @@ public class ItemInfoServiceTest {
     @Autowired
     private ItemInfoService itemInfoService;
 
-    @Test
-    public void testSet(){
-        ApplicationContext applicationContext=new ClassPathXmlApplicationContext("classpath:/config/applicationContext.xml");
-        RedisClientTemplate redisClient = (RedisClientTemplate)applicationContext.getBean("redisClientTemplate");
-        redisClient.set("a", "abc");
-        System.out.println(redisClient.get("a"));
-
-    }
+    @Ignore
     @Test
     public void testSave(){
         ItemInfo itemInfo = new ItemInfo();
@@ -41,7 +34,7 @@ public class ItemInfoServiceTest {
             e.printStackTrace();
         }
     }
-
+    @Ignore
     @Test
     public void testGetItemInfo(){
         List<ItemInfo> list = new ArrayList<ItemInfo>();
@@ -61,7 +54,7 @@ public class ItemInfoServiceTest {
             e.printStackTrace();
         }
     }
-
+    @Ignore
     @Test
     public void testUpdate(){
         JSONObject json = new JSONObject();
